@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="profile-container">
+    <div class="profile">
+        <img src="{% static 'site_images/pprofile.jpg' %}" alt="profilepic" class="profilepic">
+    </div>
+    <div class="username"><h1>{{ user.username }}</h1></div>
+    <div class="user-id">@{{ user.username }}</div>
+
+    <div class="user-bio">
+        <div class="user-bio-text">
+            {{ user.userbio }}
+        </div>
+    </div>
+    <h2>Edit Your Profile</h2>
+    <form method="post">
+      {% csrf_token %}
+        <div class="form-group">
+            <label for="{{ form.username.id_for_label }}">Username:</label>
+            {{ form.username }}
+        </div>
+    
+        <div class="form-group">
+            <label for="{{ form.password2.id_for_label }}">Confirm Password:</label>
+            {{ form.userbio }}
+        </div>
+      <button type="submit">Save Changes</button>
+    </form>
+</div>
+
+{% endblock %}
