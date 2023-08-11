@@ -11,20 +11,28 @@
             {% endif %}
             
         </div>
-        <div class="username"><h1>{{ user.username }}</h1></div>
+        <div class="username">
+            <div class="edit-profile-container" style="margin-top: 10px; margin-right: 5px;">
+                <a href="{% url 'edit_profile' %}"><img src="{% static 'icons/navbar_icons/edit.png' %}" class="edit-profile-icon" ></a>
+            </div>
+            
+            <h1>{{ user.username }}</h1>
+        </div>
         <div class="user-id">@{{ user.username }}</div>
     
         <div class="user-bio">
             <div class="user-bio-text">
-                {{ user.userbio }}
+                {% if user.userbio %}
+                    {{ user.userbio }}
+                {% endif %}
             </div>
         </div>
         <div class="followers-followings">
             <div class="followers" style="margin-right: 10px;" >
-                Followers({{followers_count}})       
+                <a href="#" id="followersLink">Followers ({{ followers_count }})</a>      
             </div>
             <div class="followings" style="margin-left: 30px;" >
-                Followings({{followings_count}}) 
+                <a href="#" id="followingsLink">Followings({{followings_count}}) </a>
             </div>
         </div>
         <div class="upload-photo-icon-container">
@@ -52,7 +60,80 @@
                 No photos
             </div>
         {% endif %}
-    
+
+<!-- Followings Modal -->
+<div class="modal fade" id="followingsModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="margin-left: 10%;max-width:400px; height: 50vh;">
+            <div class="modal-header" style="align-self: center;">
+                <h5 class="modal-title" >Following</h5>
+            </div>
+            <div class="modal-body followers-modal-content-body">
+                {% for following in followings %}
+                    <div class="followers-one-user">
+                        <div class="followers-profile-pic-container">
+                            {% if following.profile_pic %}
+                                <a href="{% url 'other_profile' user_id=following.id %}">
+                                    <img src="{{ following.profile_pic.url }}" alt="profilepic"
+                                            class="followers-profile-pic "
+                                    />
+                                </a>
+                                            
+                            {% else %}  
+                                <a href="{% url 'other_profile' user_id=following.id %}">
+                                    <img src="{% static 'site_images/images.png' %}" alt="profilepic"
+                                        class="followers-profile-pic "
+                                    />
+                                </a>
+                            {% endif %}
+                        </div> 
+                        <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+                            <a href="{% url 'other_profile' user_id=following.id %}">{{ following.username }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+ <!-- Followers Modal -->
+
+<div class="modal fade" id="followersModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="margin-left: 10%;max-width:400px; height: 50vh;">
+            <div class="modal-header" style="align-self: center;">
+                <h5 class="modal-title" >Followers</h5>
+            </div>
+            <div class="modal-body followers-modal-content-body">
+                {% for follower in followers %}
+                    <div class="followers-one-user">
+                        <div class="followers-profile-pic-container">
+                            {% if follower.profile_pic %}
+                                <a href="{% url 'other_profile' user_id=follower.id %}">
+                                    <img src="{{ follower.profile_pic.url }}" alt="profilepic"
+                                            class="followers-profile-pic "
+                                    />
+                                </a>
+                                            
+                            {% else %}  
+                                <a href="{% url 'other_profile' user_id=follower.id %}">
+                                    <img src="{% static 'site_images/images.png' %}" alt="profilepic"
+                                        class="followers-profile-pic "
+                                    />
+                                </a>
+                            {% endif %}
+                        </div> 
+                        <div style="display: flex; justify-content: center; align-items: center; margin-left: 10px;">
+                            <a href="{% url 'other_profile' user_id=follower.id %}">{{ follower.username }}</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- Photo Modal-->
 <div class="customized modal fade" id="photoModal"   data-bs-keyboard="false" tabindex="-1"  aria-hidden="true" >
     <div class="modal-dialog photo-modal-dialog modal-dialog-centered">
@@ -85,6 +166,7 @@
     </div>
   </div>
 
+
 <script>
     function showModal(imageUrl,photoId){
         var modalImage = document.getElementById('modalImage');
@@ -112,6 +194,19 @@
         var photoId = document.getElementById('delete_photo').dataset.photoId;
         document.getElementById('confirmDeleteForm').action = `/delete_photo/${photoId}/`;
 
+    });
+
+    /*follower modal controllers*/
+    $(document).ready(function () {
+        $('#followersLink').click(function () {
+            $('#followersModal').modal('show');
+        });
+    });
+    /*following modal controllers*/
+    $(document).ready(function () {
+        $('#followingsLink').click(function () {
+            $('#followingsModal').modal('show');
+        });
     });
 </script>
 {% endblock %}

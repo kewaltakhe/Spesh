@@ -2,7 +2,7 @@ from django.urls import path
 from .views import (homepage_view,index_page_view,userprofile_view,
                     editprofile_view,uploadphoto_view,deletephoto_view,
                     othersprofile_view,usersearch_view,followsomeone_view,
-                    unfollowsomeone_view
+                    unfollowsomeone_view,delete_account_view,delete_account_confirm_view
                     )
 
 urlpatterns = [
@@ -16,4 +16,6 @@ urlpatterns = [
     path('search_result/',usersearch_view,name='usersearch'),
     path('follow_someone/',followsomeone_view,name='follow_someone'),
     path('unfollow_someone/',unfollowsomeone_view,name='unfollow_someone'),
+    path('delete_account/',delete_account_view,name='delete_account'),
+    path('delete_account/confirm/<str:token>/',delete_account_confirm_view,name='delete_account_confirm')
 ]
