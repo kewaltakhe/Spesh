@@ -84,6 +84,7 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+DATABASES['default'] = dj_database_url.parse('postgres://spesh_db_postgre_user:kq17FxIg9gBxxucI2SAzxqLYGykHfk5Q@dpg-cjj5afocfp5c73e40c20-a.singapore-postgres.render.com/spesh_db_postgre')
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
