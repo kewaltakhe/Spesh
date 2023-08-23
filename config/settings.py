@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
     'django.contrib.humanize',
@@ -92,8 +91,7 @@ DATABASES['default'] = dj_database_url.parse('postgres://spesh_db_postgre_user:k
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 ##cloudinary
-if os.environ["ENVIRONMENT"] == "PRODUCTION":
-    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME' : os.environ['CLOUD_NAME'],
     'API_KEY' : os.environ['CLOUD_API_KEY'],
