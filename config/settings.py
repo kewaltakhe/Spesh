@@ -38,6 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.humanize',
     'spesh',
     'accounts'
@@ -87,6 +90,10 @@ DATABASES = {
 DATABASES['default'] = dj_database_url.parse('postgres://spesh_db_postgre_user:kq17FxIg9gBxxucI2SAzxqLYGykHfk5Q@dpg-cjj5afocfp5c73e40c20-a.singapore-postgres.render.com/spesh_db_postgre')
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
+
+##cloudinary
+if os.environ["ENVIRONMENT"] == "PRODUCTION":
+    DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
