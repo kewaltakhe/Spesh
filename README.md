@@ -4,18 +4,15 @@ A photo sharing website built using Django 4.2.4.
 
 ## Table of Contents
 
-- [About](#about)
+- [About](#About)
 - [Getting Started](#getting-started)
 - [Technologies Used](#technologies-used)
-- [Usage](#usage)
-- [Screenshots](#screenshots)
-- [Contributing](#contributing)
-- [License](#license)
+- [Deployment](#deployment)
 - [Acknowledgements](#acknowledgements)
 
 ## About [Spesh](https://spesh-nine.vercel.app/): A Beginner-Friendly Social Media Platform
 
-  Welcome to Spesh, a simple project that allows users to share photos and follow other users. It is designed with beginners in mind. Spesh offers a hands-on opportunity to explore full-stack web development using Django while building a basic social media website.
+  Welcome to Spesh, a simple project that allows users to share photos and follow other users.<br>It is designed with beginners in mind. Spesh offers a hands-on opportunity to explore full-stack web development using Django while building a basic social media website.
 
 ## Getting Started
 
@@ -71,9 +68,19 @@ python manage.py migrate
 #launch
 python manage.py runserver
 ```
+## technologies-used
+- Frameworks: (e.g., Django 4.2.4)
+- Front-end: Bootstrap 5
+- Cloud database: Cockroachdb(PostgreSQL)
+- cloud storage: Cloudinary
+<br>
 
+## deployment
+The project is deployed on vercel. Vercel does not support sqlite. So, before deploying, configure a cloud based database e.g. Cockroachdb and storage e.g.Cloudinary
+<br>
 
-
-
-
-## T
+## acknowledgements
+Helpful resources
+- Django for Beginners: Build websites with Python and Django
+Book by William S. Vincent
+- Devmaesters [Tutorial](https://devmaesters.com/blog/15) on deployment 
