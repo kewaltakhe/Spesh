@@ -25,7 +25,6 @@ if os.path.isfile(dotenv_file):
     dotenv.load_dotenv(dotenv_file)
 
 SECRET_KEY = os.environ['SECRET_KEY']
-
 ALLOWED_HOSTS = ['*']
 DEBUG = True
 
@@ -79,24 +78,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': BASE_DIR / 'db.sqlite3',
+#    }
+#}
+DATABASES = {'default': dj_database_url.config(default=os.environ['DATABASE_URL'], engine='django_cockroachdb')}
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-DATABASES['default'] = dj_database_url.parse('postgres://spesh_db_postgre_user:kq17FxIg9gBxxucI2SAzxqLYGykHfk5Q@dpg-cjj5afocfp5c73e40c20-a.singapore-postgres.render.com/spesh_db_postgre')
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
-
 ##cloudinary
+
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME' : os.environ['CLOUD_NAME'],
     'API_KEY' : os.environ['CLOUD_API_KEY'],
     'API_SECRET' : os.environ['CLOUD_API_SECRET']
 }
+
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
