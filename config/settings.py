@@ -97,7 +97,6 @@ CLOUDINARY_STORAGE = {
     'API_SECRET' : os.environ['CLOUD_API_SECRET']
 }
 
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
