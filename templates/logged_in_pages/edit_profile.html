@@ -1,18 +1,36 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block content %}
 
-<div class="profile-container">
-    <h2>Edit Your Profile</h2>
-    <form method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Save Changes</button>
-    </form>
-    <div style="margin-top: 100px;">
-        <a type="btn" class="btn btn-danger" href="{% url 'delete_account' %}" style="color: aliceblue;">Delete Account</a>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="profile-container p-4 border rounded">
+                <h2 class="mb-4">Edit Your Profile</h2>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="{{ form.userbio.id_for_label }}" class="form-label">User Bio</label>
+                        {{ form.userbio }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.profilepic.id_for_label }}" class="form-label">Profile Picture</label>
+                        <div class="input-group">
+                            <input type="file" class="form-control" id="{{ form.profilepic.id_for_label }}" name="{{ form.profile_pic.name }}" accept="image/*">
+                            <label class="input-group-text" for="{{ form.profile_pic.id_for_label }}">Browse</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </form>
+                
+                
+                <div class="mt-4">
+                    <a href="{% url 'delete_account' %}" class="btn btn-danger" style="color: aliceblue;">Delete Account</a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-
 
 {% endblock %}

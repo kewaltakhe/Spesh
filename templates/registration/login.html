@@ -1,21 +1,34 @@
 {% extends 'account_base.html' %}
 {% block content %}
-<div class="container d-flex justify-content-center" style="min-height: 100vh; margin-top: 90px;margin-right: 0px;">
-    <div class="login-container">
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+    <div class="login-container rounded-4 p-4 shadow" style=" background-color: #ADC6B0">
+        <div class="text-center mb-4">
+            <h1 class="display-3 alkatra-500 " >Spesh</h1>
+            <p class="lead">Capture, Connect, Create</p>
+        </div>
+        <div class="text-center mb-3">
+            <h2 class="mb-0">Log In</h2>
+        </div>
         <div class="row">
-            <div>
-                <div class="logo-container">
-                <h1 class="display-3 alkatra-500 ">Spesh</h1>
-                </div>
-            </div>
-            <div class="col-sm-6">
-                <p>Login to Spesh</p>
+            <div class="col-sm-8 offset-sm-2">
+                
                 <form method="post" class="form">
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="form-group mb-3">
+                        <label for="{{ form.username.id_for_label }}">Username</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="form-group mb-3">
+                        <label for="{{ form.password.id_for_label }}">Password</label>
+                        {{ form.password }}
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-block ">Login</button>
+                    </div>
                 </form>
-                <p>New to Spesh?<br> Create an account<a href="{% url 'signup' %}"> Here.</a></p>
+                
+                <p class="mt-3 text-center">New to Spesh? Create an account <a href="{% url 'signup' %}" class="original-a">Here.</a></p>
             </div>
         </div>
     </div>

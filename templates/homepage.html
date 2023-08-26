@@ -5,7 +5,7 @@
 <div class="container-homefeed-page" style="z-index: 1;">
     <div class="feed-all-images">
         {% for photo in feedpage_photos %}
-        <div class="feed-image-container">
+        <div class="feed-image-container border rounded-2">
             <div class="feed-image-user-details">
                 <div>
                     {% if photo.user.profile_pic %}
@@ -44,7 +44,7 @@
             <h3>Follow people for more content</h3>
         </div>
     </div>
-    <div class="feed-suggestion">
+    <div class="feed-suggestion border rounded-2">
         <div class="suggestion-heading">
             <div style="margin-top: -10px;">
                 suggestions

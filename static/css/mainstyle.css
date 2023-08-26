@@ -425,15 +425,12 @@ a:active {
 
 .feed-image-container {
     flex-direction: column;
-    border: solid 1px transparent ;
-    border-radius: 10px;
     width: 90%;
     height: 80%;
     margin: 20px;
     line-height: 70px;
     margin-right: 40px;
     font-size: 70px;
-    outline: solid 1px;
 }
 
 .feed-image-user-details {
@@ -472,7 +469,6 @@ a:active {
     margin-right: 15px;
     height: 400px;
     width: 20%;
-    border: 1px solid;
     background-color: rgb(248, 248, 248);
     text-align: center;
     line-height: 70px;
